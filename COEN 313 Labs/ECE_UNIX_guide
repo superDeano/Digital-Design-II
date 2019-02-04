@@ -1,0 +1,2009 @@
+
+UNIX is the name of an OPERATING SYSTEM for a computer. An operating 
+system is a CONTROL PROGRAM for a computer. 
+
+UNIX is a multi-user, multitasking operating system.  The original
+version of UNIX was developed by  AT&T Bell Laboratories.  It was the first
+interactive, multi-user system.   Ken Thompson of AT&T Bell Labs incorporated
+features of found in earlier operating systems such as  MULTICS and the Camebridge
+Multiple Access System. He also pruned out some other features of these various
+systems. It has been said that "UNIX is MULTICS with parts cut out", hence the
+origin of the name UNIX (eunuch).
+
+Over the years, the UNIX family tree has branched into many different versions.
+The version we are using at Electrical and Computer 
+Engineering is called Solaris.  It is owned by Sun Microsystems, the company
+which makes engineering workstations.  Versions 2.7 and 2.8
+of Solaris are installed on most of our workstations in the labs.  Some machines
+have version 2.6 installed.
+
+Getting Started
+--------------
+
+1) Before you can start to experiment with the power and features of UNIX
+    you must obtain your ECE UNIX login name and password.  These are given
+    out by the helpdesk in room H960 near the start of each term.  Present
+    a valid Concordia ID card to obtain your login name and password.
+
+   Login names typically follow the naming convention of the first character
+  of your first name, followed by the underscore character (_), followed by
+  the first five characters of the family name (exceptions to this convention
+  do exist). For example, some login names of former students have been:
+
+
+p_muccia
+a_winnik
+k_richa   (Keith Richards was never a student of Concordia... he went to
+           Dartmouth Technical College , where a teacher saw an artistic
+           talent in his drawing abilities and recommended him to Siddcup
+           Art College where he developed an interest in guitar the rest is history...)
+
+Your login name is also the email address which other users would use to
+send electronic mail.  A fully quantified email addresses would be of the form:
+
+p_muccia@ece.concordia.ca
+
+
+You are issued an initial password. 
+
+To login to a system do the following:
+
+enter your login name followed by pressing the  Return key.
+enter your given password followed by pressing the Return key.
+
+(the system will put * instead of the actual characters of your password)
+
+
+CHANGING YOUR INITIAL PASSWORD
+-----------------------------
+
+You should change your password as soon as you login. This is done with the
+
+passwd
+
+command.  The following shows a typical use of the passwd command to change one's
+password:
+
+ted@brownsugar ~/UnixCommands 2:30pm >passwd
+passwd:  Changing password for ted
+Enter login(NIS) password:   (enter your original password here...)
+
+If you correctly enter your password, you will be prompted for a new
+password:
+
+New password: (enter your new password)
+Re-enter new password:  (enter it again, the system checks to make sure you typed it correctly)
+
+
+If the two new passwords match, your password will be changed. 
+
+CHOOSING A GOOD PASSWORD
+------------------------
+
+You should choose a password that is easy to remember, but difficult to guess.
+Never reveal your UNIX password to anyone, sharing of accounts is a violation of
+ECE Computer Usage Policy.
+
+Your password should NOT be:
+
+your name
+your friend's name
+your dog's/cat's/goldfish's/spouse's/ name
+anyone's name
+any word in any language
+a number
+
+The following is a good method of choosing a fairly easy to remember yet difficult
+to guess password:
+
+1) take a sentence which is easily remembered. For example:
+
+   I can't get no satisfaction.
+
+2) take the first letter from each word and separate the letters with 
+   a punctuation symbol such as the period (.) to obtain:
+
+   I.c.g.n.s.
+
+3) append a number to the end, such as 1965 (the year the song 'Satisfaction'
+   was released) to obtain a pretty good password:
+
+   I.c.g.n.s.1965
+
+Note the use of upper and lower case letters. In UNIX, case is important.
+This means Keith is different from KEITH. 
+
+THE UNIX SHELL PROMPT:
+
+After successfully logging in to your UNIX account, you will have several
+windows appear on your screen. These are called X-terminals, or xterms for
+short.  Each will have a PROMPT similar to:
+
+ted@brownsugar ~ 2:47pm >
+
+The cursor will appear immediately after the last character of the prompt.
+Your exact prompt may appear slightly different depending on how your
+account has been configured.  The 'brownsugar' after the ted@ refers to the
+hostname of the workstation one has logged onto.  My computer has hostname
+'brownsugar', yours may be different. 
+
+One may use the hostname command to learn the name of the host your are
+logged onto (in case your prompt does not indicate it):
+
+ted@brownsugar ~ 2:54pm >hostname
+brownsugar
+
+
+Simply enter hostname from the prompt, the system responds with the name.
+
+Human's are good at remembering names, computers work better with numerical
+addresses.  The following command may be used to obtain the IP (Internet Protocol)
+address of a particular host:
+
+ted@brownsugar NCSIM 12:36pm >/usr/sbin/nslookup brownsugar
+Server:  cia.ece.concordia.ca
+Address:  132.205.2.1
+
+Name:    brownsugar.ece.concordia.ca
+Address:  132.205.2.12
+
+
+YOUR HOME DIRECTORY
+-----------------
+
+When you first log in to your account, you will be placed into your home
+directory.  All user accounts are in a subdirectory called /home .  
+Your home directory is a subdirectory contained within the /home subdirectory.
+It is the same as your login name. For example, my home directory is found in
+
+/home/t/ted
+
+Here is a small listing of the contents of the /home directory:
+
+ted@brownsugar ~ 2:57pm >cd /home
+ted@brownsugar /home 2:57pm >ls 
+a_abbas   c_campbe  e_salame  hy_rober  k_perou   m_razmpo  p_koutso  s_malik   v_stavro
+a_abuhas  c_cerros  e_samaha  hz_qures  k_robido  m_robill  p_krawec  s_mancin  v_teoli
+a_abulhu  c_chambo  e_sheikh  i_afzal   k_saad    m_rumi    p_kumar   s_mangah  v_tochev
+a_abusid  c_clavel  e_stavri  i_ali     k_salim   m_safar   p_kunara  s_maniru  v_tokate
+a_aladna  c_coutu   e_tochta  i_avsker  k_sedrat  m_salari  p_ledesm  s_manos   v_tran
+a_ali     c_coutya  e_yannak  i_berger  k_shiaa   m_shafia  p_lesnik  s_marcou  v_ty
+a_alkhat  c_dicesa  e_yu      i_boev    k_solomo  m_shiraz  p_licheo  s_markan  v_valkan
+a_alkhla  c_discep  e_zeidan  i_elsaad  k_tochko  m_sikors  p_liu     s_marti   v_wichwe
+a_alsafa  c_duanmu  ea_banga  i_farhat  k_tranka  m_simhon  p_london  s_mathew  va_deluc
+a_alzaya  c_elchan  ea_chaco  i_kawsan  k_vadavi  m_sipehi  p_lukidi  s_mboumb  va_layne
+a_alzibd  c_fang    ea_ferre  i_khazal  k_vitoro  m_sirhan  p_marcha  s_michel  va_valel
+
+
+NAVIGATING AROUND DIRECTORIES
+----------------------------
+
+Let us examine the line :
+
+ted@brownsugar ~ 2:57pm >cd /home
+
+in the above example.
+
+When I logged into my account, I was placed into /home/t/ted.  How did I change to
+the /home directory?  I simply issued the
+
+cd /home 
+
+command from the prompt. cd is the UNIX change directory command.  The argument after
+the cd is the name of the directory you wish to change into.
+
+All UNIX directories start from the root directory which is given the special
+name / (slash).  
+
+
+Next, let us examine the line:
+
+ted@brownsugar /home 2:57pm >ls
+
+The ls command is used to obtain a listing of the files and directories stored
+within a given directory.  Since I was already in /home when I typed the ls
+command, I was given a listing of the contents of the /home directory.
+
+
+Let us explore this ls command some more and experiment with some of its
+command line options:
+
+ted@brownsugar /home 4:02pm >ls -al 
+total 1182
+dr-xr-xr-x   3 root     root            3 Jul 24 20:38 .
+drwxr-xr-x  24 root     root         1024 Mar 23 17:11 ..
+dr-xr-xr-x   1 root     root            1 Jul 25 16:02 a_abbas
+dr-xr-xr-x   1 root     root            1 Jul 25 16:02 a_abuhas
+dr-xr-xr-x   1 root     root            1 Jul 25 16:02 a_abulhu
+dr-xr-xr-x   1 root     root            1 Jul 25 16:02 a_abusid
+dr-xr-xr-x   1 root     root            1 Jul 25 16:02 a_aladna
+dr-xr-xr-x   1 root     root            1 Jul 25 16:02 a_ali
+
+
+The -al option is used to obtain a long format listing of ALL files
+(even the so called 'hidden' files which have a . as the first character
+of the filename).  
+
+The first 10 characters given in each row of the listing produced by the
+ls command are interpreted as follows (the following was taken directly
+from the UNIX man page for the ls command... try typing man ls from
+your prompt.  In general, most UNIX commands have a man page entry:
+man cd, man mkdir, man man )
+
+The first character may be one of the following:
+
+     d         the entry is a directory;
+
+     D         the entry is a door;
+
+     l         the entry is a symbolic link;
+
+     b         the entry is a block special file;
+
+     c         the entry is a character special file;
+
+     p         the entry is a  fifo  (or  "named  pipe")  special
+               file;
+
+     s         the entry is an AF_UNIX address family socket;
+
+     -         the entry is an ordinary file;
+
+     The next 9 characters are interpreted as three sets of three
+     bits  each. The first set refers to the owner's permissions;
+     the next to permissions of others in the user-group  of  the
+     file; and the last to all others. Within each set, the three
+     characters indicate permission to read,  to  write,  and  to
+     execute  the  file  as a program, respectively. For a direc-
+     tory, ``execute'' permission is interpreted to mean  permis-
+     sion to search the directory for a specified file. The char-
+     acter after permissions is ACL indication. A  plus  sign  is
+     displayed if there is an ACL associated with the file. Noth-
+     ing is displayed if there are just permissions.
+
+     ls  -l (the long list) prints its output as follows for  the
+     POSIX locale:
+
+     -rwxrwxrwx+  1 smith  dev    10876  May 16 9:42 part2
+
+     Reading from right to left, you see that the current  direc-
+     tory  holds  one file, named part2. Next, the last time that
+     file's contents were modified was 9:42 A.M. on May  16.  The
+     file  contains 10,876 characters, or bytes. The owner of the
+     file, or the user, belongs to the group dev  (perhaps  indi-
+     cating ``development''), and his or her login name is smith.
+     The number, in this case 1, indicates the number of links to
+     file  part2;  see cp(1).  The plus sign indicates that there
+     is an ACL associated with the file. Finally,  the  dash  and
+     letters  tell  you that user, group, and others have permis-
+     sions to read, write, and execute part2.
+
+     The execute (x) symbol here occupies the third  position  of
+     the  three-character  sequence.  A  -  in the third position
+     would have indicated a denial of execution permissions.
+
+     The permissions are indicated as follows:
+
+     r         the file is readable
+
+     w         the file is writable
+
+     x         the file is executable
+
+     -         the indicated permission is not granted
+
+     s         the set-user-ID or set-group-ID bit is on, and the
+               corresponding  user or group execution bit is also
+               on
+
+     S         undefined bit-state (the set-user-ID bit is on and
+               the user execution bit is off)
+
+     t         the 1000 (octal) bit, or sticky bit,  is  on  (see
+               chmod(1)), and execution is on
+
+   T         the 1000 bit is turned on, and  execution  is  off
+               (undefined bit-state)
+
+  /usr/bin/ls
+     l         mandatory locking occurs during access  (the  set-
+               group-ID  bit is on and the group execution bit is
+               off)
+
+  /usr/xpg4/bin/ls
+     L         mandatory locking occurs during access  (the  set-
+               group-ID  bit is on and the group execution bit is
+               off)
+
+     For user and group permissions, the third position is  some-
+     times  occupied by a character other than x or -. s also may
+     occupy this position, referring to the state of  the  set-ID
+     bit, whether it be the user's or the group's. The ability to
+     assume the same ID as the  user  during  execution  is,  for
+     example,  used  during login when you begin as root but need
+     to assume the identity of the user you login as.
+
+     In the case of the sequence  of  group  permissions,  l  may
+     occupy  the  third  position. l refers to mandatory file and
+     record locking. This permission describes a  file's  ability
+     to  allow other files to lock its reading or writing permis-
+     sions during access.
+
+     For others permissions, the third position may  be  occupied
+     by  t  or  T. These refer to the state of the sticky bit and
+     execution permissions.
+
+
+
+A word of warning to the novice UNIX user: the entries in the UNIX
+man pages tend to be somewhat lengthy and cryptic.  In some cases,
+it is best to first refer to a good UNIX textbook instead of trying
+to read the corresponding man entry. You will find that as you become
+more proficicient with UNIX, the man pages will begin to make more sense
+and one can actually learn from the material contained in these entries.
+
+
+Now that we now how to read file permissions, let us proceed with how to
+CHANGE these permissions with the chmod command:
+
+Suppose we have a directory called Keith_Richards and its associated file
+permissions are :
+
+ted@brownsugar ~ 4:29pm >ls -al | grep Keith_Richards
+drwx------   2 ted      staff         512 Jul 19 16:08 Keith_Richards
+ted@brownsugar ~ 4:29pm >
+
+
+Notice how I used the UNIX pipe (|) character to connect the OUTPUT STREAM
+of the ls command to the INPUT stream of the grep command. grep is a UNIX
+command which is used to filter out only those lines containing a specified
+string (or single character for that matter). In this case, grep will print out
+any lines which have Keith_Richards contained in them.  grep is totally oblivious
+as to where it is obtaining its input from. grep can also accept input from a file.
+This is what makes UNIX such a powerful (if somewhat initially difficult to learn)
+operating system.
+
+Notice how the Keith_Richards directory is readable and writeable and executable
+only by the owner called ted.  
+
+User ted can allow all other users to read the contents of the Keith_Richards
+directory as follows:
+
+ted@brownsugar ~ 4:29pm > chmod g+rx,o+rx  Keith_Richards
+You have new mail.
+ted@brownsugar ~ 4:37pm >ls -al | grep Keith_Richards
+drwxr-xr-x   2 ted      staff         512 Jul 19 16:08 Keith_Richards
+
+
+I used the chmod command to give read and execute permission to members
+of the group associated with this directory  (which is the group called 'staff')
+and to give read and execute permission to all others.  Notice how write
+permission was not given, others cannot write files in this directory, nor can
+they modify existing files (change file contents or delete files).
+
+There is another format used to specify the values of the file
+permission to be set. Consider the following command:
+
+ted@brownsugar ~ 4:37pm >chmod 666 Keith_Richards
+
+
+Let's now check the new file permissions on the Keith_Richards directory:
+
+ted@brownsugar ~ 4:40pm >ls -al | grep Keith_Richards
+drw-rw-rw-   2 ted      staff         512 Jul 19 16:08 Keith_Richards
+
+
+if we interpret each number in the 666 of the above chmod command
+as a 3 bit OCTAL number we arrive with the following value:
+
+  110 110 110
+
+  rwx rwx rwx
+
+each group of three bits correponds to the rwx permissions associated 
+with USER GROUP OTHERS.  If the bit is a '1', then the corresponding 
+file permission will be set, if a bit is '0', then the permission 
+will not be set.
+
+Be careful with the setting of your file permissions. Carelessness
+with one's permissions can result in your files being readable by other 
+users. Consider the following possible situation:
+
+
+
+ted@brownsugar ~ 4:44pm >cd /home
+ted@brownsugar /home 4:46pm >cd a_abbas
+ted@brownsugar a_abbas 4:46pm > ls -al 
+
+drwxr-xr-x   2 a_abbas  beng          512 Sep 20  1993 Matlab
+-rw-------   1 a_abbas  beng            0 Dec 10  1999 Missing
+drwxr-x---   7 a_abbas  beng         1024 Nov 30  1998 Synopsys
+drwxr-xr-x   9 a_abbas  beng          512 Jan 27  1998 Valid
+-rw-------   1 a_abbas  beng            0 Dec 10  1999 You
+-rw-r--r--   1 a_abbas  beng         4708 Jul 23  1999 assgn1.cpp
+-rw-r--r--   1 a_abbas  beng         4708 May 11  1999 assgn1.cpp~
+-rw-r-----   1 a_abbas  beng           30 May  4  1999 clean
+-rw-r-----   1 a_abbas  beng         5433 Jul  7  1999 clint
+
+
+There is a file called assgn1.cpp with file permissions of -rw-r--r--.
+This means anyone can read this file. The contents of a text file can
+be viewed using either the more or less commands :
+
+ted@brownsugar a_abbas 4:47pm >more assgn1.cpp
+/*--------------------------------------------------------------------
+ 
+                ____ ___  __  __ ____ _____ _  _    __
+               / ___/ _ \|  \/  |  _ \___ /| || |  / /_
+              | |  | | | | |\/| | |_) ||_ \| || |_| '_ \
+              | |__| |_| | |  | |  __/___) |__   _| (_) |
+               \____\___/|_|  |_|_|  |____/   |_|  \___/
+ 
+                O P E R A T I N G       S Y S T E M S
+ 
+ 
+----------------------------------------------------------------------
+ 
+PROFESSOR:         Manas Saksensa
+ASSISTANT:         Panagiota Karvelas
+ 
+ 
+ 
+SUBMISSION BY:     Keith Richards (12181943)
+                   (No group members.)  Keith went solo on this one...
+ 
+ 
+ 
+ASSIGNMENT #1:     Micro Shell
+                   Extended Micro Shell
+ 
+ 
+DUE DATE:          Monday October 19, 1998
+ 
+----------------------------------------------------------------------
+ 
+ 
+MODULE:            assgn1.cpp     
+MODULE USES:       Commands.h
+ 
+ 
+--------------------------------------------------------------------*/
+
+
+#include <iostream.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <wait.h>
+#include "Commands.h"
+#define  COMMAND_BUFFER  1024
+#define  MAXARGS  50
+#define  TRUE  1
+#define  FALSE 0
+
+char Arguement1[100], Arguement2[100];
+char cmd[COMMAND_BUFFER];
+
+
+int Prompt();
+static int Parse(int *argcp, char *argv[], int max);
+void Execute_External_Command(char *argv[]);
+
+
+int Prompt()
+{
+  char *Input[MAXARGS+1];
+  int  Sucess;
+  int  Number_Of_Arguements;
+  int Command;
+
+  Command = -1;
+
+  //printf("\nJohn 95 >");
+
+  Sucess = Parse(&Number_Of_Arguements,Input,MAXARGS);
+
+  //if(Sucess == FALSE)
+  //  printf("\aYour input can't be parsed... Enter your command again...");
+   
+  if(Number_Of_Arguements == 2)
+    strcpy(Arguement1,Input[1]);
+  
+  if(Number_Of_Arguements == 3)
+    {
+    strcpy(Arguement1,Input[1]);
+    strcpy(Arguement2,Input[2]);
+    }
+  //printf("[%d]\nArguement 1 = %s\nArguement 2 = %s\n",Number_Of_Arguements,Arg
+uement1,Arguement2);
+
+
+  if(strcmp(Input[0],"move"  )==0)
+    {
+    Command = 1;
+    if(Number_Of_Arguements > 3)
+      {
+      printf("\aMOVE ERROR: Too many arguements.\n");
+      return(-1);
+
+etc..
+
+Hmmm... this was totally serendipitous.  
+I am quite fond of the word 'serendipity', it has a nice flow of vowels contained in it.
+It means the following( I used lynx to access dictionary.com, an online dictionary,
+lynx is a text mode Browser):
+
+ted@flash ~/UnixCommands 4:57pm >lynx dictionary.com
+
+ Dictionary.com  Look up:  serendipitous____  OK
+    Search: (*) Dictionary    ( ) Thesaurus
+
+           Get the Top 10 Most Popular Sites for "serendipitous" - from Ask Jeeves
+                                        Sponsored Link
+                                    
+   Home - Fun & Games - Translator - Word of the Day - Help
+
+   Found 1 entry for serendipitous.
+     ___________________________________________________________________________________
+
+serendipity (s [ebreve.gif] r [lprime.gif] [schwa.gif] n-d [ibreve.gif] p
+   [prime.gif] [ibreve.gif] -t [emacr.gif] )
+   n. pl. serendipities 
+    1. The faculty of making fortunate discoveries by accident.
+    2. The fact or occurrence of such discoveries.
+    3. An instance of making such a discovery.
+   ______________________
+                       
+   [From the characters in the Persian fairy tale The Three Princes of Serendip, who made
+   such discoveries, from Persian Sarand [imacr.gif] p, Sri Lanka, from Arabic sarand
+
+
+
+
+See what I meant about being careful with your file permissions???
+So be 'Careful with those file permissions
+Eugene' ( a Pink Floyd refererence for those of you old enought to remember
+Floyd).
+
+
+
+
+NOTE: You may encounter the following when you initially attempt to
+change in the usder's directory:
+
+dea] Tue 7:16pm  /home/ > cd a_abbas
+a_abbas: No such file or directory.
+[dea] Tue 7:17pm  /home/ > 
+
+
+This means that the directory no longer exists since our system
+administrators deleted it.  
+
+
+
+THE UNIX FILE SYSTEM
+-------------------
+
+
+
+
+
+
+
+The file system of UNIX resembles an inverted tree structure (with the trunk of
+the tree at the top of the picture) 
+
+
+
+
+                               /  (root directory)
+--------------------------------------------------------------
+|                   |            |            |              | 
+bin               dev            etc         home
+|                   |                         |
+-----------                         ----------------------------
+|    |                              |           |         |     | 
+adb  addbib                       user1       user2     user3  usern
+                                    |
+                      ----------------------
+                      |    |    |          |
+                    dir1 file1 dir2      file2
+                      |
+                   -------
+                   |     |
+                  file3  file4
+
+
+FULL and RELATIVE file names
+----------------------------
+
+Consider file3 stored in dir1 of user1 in the /home directory.  The FULL filename
+of this file is:
+
+/home/user1/dir1/file3
+
+If user1 is currently in their own home directory (/home/user1), the the 
+RELATIVE path name is:
+
+dir1/file3
+
+If user1 is already in their dir1 directory, then the relative file name is simply
+
+file3
+
+CREATING DIRECTORIES IN YOUR HOME DIRECTORY:
+--------------------------------------------
+
+It is advisable to keep your home directory neatly organized. Create a directory
+for every course you are registered in; keep files related to each course
+in the appropriate directory.  The mkdir command is used to create a new (empty)
+directory:
+
+ted@brownsugar ~ 3:19pm >mkdir Keith_Richards
+ted@brownsugar ~ 3:19pm >
+
+
+Notice how UNIX simply returns you back to your prompt if a command completed
+without errors. In UNIX, 'no news is good news' . 
+
+Let's examine the contents of this newly created directory given the whimsical
+name Keith_Richards:
+
+ted@brownsugar ~ 3:19pm >cd Keith_Richards/
+ted@brownsugar ~/Keith_Richards 3:21pm >ls -al
+total 8
+drwx------   2 ted      staff         512 Jul 19 15:19 .
+drwxr-xr-x 150 ted      staff        6656 Jul 19 15:19 ..
+
+
+Notice how I first changed into the Keith_Richards directory and then
+issued the ls  command with the -al COMMAND LINE OPTIONS.  Most UNIX
+commands accept optional parameters , they are specified using the -
+character.  The ls -al command will list ALL FILES AND DIRECTORIES,
+even HIDDEN ones (in UNIX a directory or file is hidden if its name
+begins with a . character.  The ls command (without options does not
+list hidden files).
+
+What are the  . and .. names which appear at the end of the above two
+lines? These directories exist in every UNIX directory:
+
+..   refers to the parent directory of the current subdirectory
+.    refers to the present directory your are currently in
+
+
+So, one can change into 'one level up' in the directory structure
+with the
+
+cd ..
+
+command.  
+
+REMOVING DIRECTORIES
+--------------------
+
+Use the rmdir <directory name> to remove a previously created directory.
+THE DIRECTORY MUST BE EMPTY BEFORE IT CAN BE REMOVED. (more on removing
+files in a later section of this guide, for now let's assume the directory
+is empty):
+
+ted@brownsugar ~/Keith_Richards 3:33pm >cd ..
+ted@brownsugar ~ 3:33pm >rmdir Keith_Richards
+ted@brownsugar ~ 3:33pm >
+
+I first changed to the parent of Keith_Richards (which in UNIX is the 
+directory /home/t/ted, in actual reality Keith's parents are Doris Dupree
+and Bert Richards... the Dupree family is descended from the French Huguenots...
+interesting trivia for those of you who care).
+
+
+CREATING TEXT FILES 
+------------------
+
+An indispensable skill for UNIX survival is the ability to create and edit
+ASCII text files.  We will show the rudiments of the UNIX vi editor. vi
+was created by a Stanford University student by the name of Bill Joy. Bill
+eventually went on to found Sun Microsystems.  Bill is a very rich man...
+learning vi will not guarantee that you become rich but at least you will
+be able to do your homework.
+
+The vi editor has two basic modes:
+
+Command Mode
+Text Mode
+
+one must be in command mode when you want to perform editing commands such
+as deleting a character, deleted a word, searching for a character or string,
+replacing a character of string, etc.  You must be in Text mode when you
+want to enter the text of your file.
+
+To start vi simply type vi and provide a suitable file name:
+
+vi junk
+
+
+you will see your window change into :
+
+X
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"junk" [New file]
+
+
+The X represents your cursor.  The ~ represents the end of your file. 
+The name of the file is indicated on the last line of the window.
+
+vi starts up in command mode, to change into text mode enter one of
+the following
+
+i
+a
+
+
+i brings you into insert mode. You can now begin typing characters
+from the keyboard. Enter the following lines:
+
+I was born in a cross fire hurricane
+I was raised by a toothless, bearded hag,
+I was schooled with a strap across my back,
+But it's allright, 
+I'm Jumpin Jack Flash,
+It's a gas, gas, gas
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"junk" [New file]
+
+
+To save the file, do the followed
+
+Esc  (press the key labelled Esc, this brings you into Command mode)
+:wq   (press the colon key (:) followed by the w and q keys.
+
+vi responds with the line
+
+"junk" [New file] 7 lines, 188 characters
+
+and your file has been written to a disk file called junk.  
+
+If you simply want to write to a disk file without quitting the
+editor, type :w once you are in command mode.  You should get into
+the habit and saving your work to disk often (in case something happens
+while you are editing a large file such as a power failure resulting in the
+loss of your Master's thesis work....)
+
+
+BASIC vi editing
+----------------
+
+Restart vi with the junk file:
+
+vi junk
+
+Enter command mode by pressing Esc.
+
+To move around in the file we use the 
+
+h j k l keys in the following manner:
+
+j : to move one line down
+k : is used to move one line up
+h : is used to move one character to the left
+l : is used to move one character to the right
+
+
+To delete:
+
+x  : to delete the character which the cursor is positioned over
+dd : to delete the entire line which the cursor is in
+d} : to delete all the characters from the cursor onwards to the end of the line
+dw : to delete up to the end of the current word
+u  : to undo a previous change
+r  : to replace the current character with a new one
+G : to position the cursor at the end of the file
+:$ : this is another way of positioning the cursor at the end of the file
+
+To learn more about the vi editor refer to the book:
+
+Learning the vi Editor
+Linda Lamb and Arnold Robbins
+O'Reilly and Associates, Inc.
+ISBN 1-56592-426-6
+
+Other UNIX text editors
+-----------------------
+
+The vi editor is guaranteed to be installed on every UNIX system ever
+created, thye same cannot be said of other text editors. This alone is a
+sufficient reason to master the initially cryptic vi commands.
+
+Some other UNIX text editors are:
+
+emacs
+pico
+joe  (a recursively named editor: Joe's Own Editor... Wojciech is fond of this one)
+xedit ( a graphical , easy to use editor need to be logged into a X-window environment to use it)
+
+
+Any good UNIX textbook explains the use of vi, emacs, and pico.  xedit is intuitively
+easy to learn.
+
+REMOVING FILES
+-------------
+
+The rm command is used to remove a file:
+
+Suppose we have used vi to create the following files in the
+Keith_Richards directory:
+
+ted@brownsugar ~/Keith_Richards 4:04pm >ls -al
+total 12
+drwx------   2 ted      staff         512 Jul 19 16:04 .
+drwxr-xr-x 150 ted      staff        6656 Jul 19 16:03 ..
+-rw-------   1 ted      staff           3 Jul 19 16:03 brown_sugar
+-rw-------   1 ted      staff           5 Jul 19 16:04 dead_flowers
+-rw-------   1 ted      staff           7 Jul 19 16:04 gimme_shelter
+-rw-------   1 ted      staff           4 Jul 19 16:04 satisfaction
+
+
+If we want to delete dead_flowers we do this:
+
+
+ted@brownsugar ~/Keith_Richards 4:04pm >rm dead_flowers
+rm: remove `dead_flowers'?  (answer with a y or n from the keyboard) y
+
+ted@brownsugar ~/Keith_Richards 4:06pm >ls -al
+total 11
+drwx------   2 ted      staff         512 Jul 19 16:06 .
+drwxr-xr-x 150 ted      staff        6656 Jul 19 16:03 ..
+-rw-------   1 ted      staff           3 Jul 19 16:03 brown_sugar
+-rw-------   1 ted      staff           7 Jul 19 16:04 gimme_shelter
+-rw-------   1 ted      staff           4 Jul 19 16:04 satisfaction
+
+
+dead_flowers has been permanently removed. Once a file has been removed, it
+is gone forever. There is no undelete command in UNIX as there is in that
+other (inferior) operating system....
+
+To remove all files in a directory do:
+
+ted@brownsugar ~/Keith_Richards 4:06pm >rm -rf *
+ted@brownsugar ~/Keith_Richards 4:08pm >ls -al
+total 8
+drwx------   2 ted      staff         512 Jul 19 16:08 .
+drwxr-xr-x 150 ted      staff        6656 Jul 19 16:03 ..
+ted@brownsugar ~/Keith_Richards 4:08pm >
+
+
+THIS COMMAND IS AS DANGEROUS AS HEROIN. IT WILL RECURSIVELY DESCEND THROUGH
+THE DIRECTORY STRUCTURE AND REMOVE ALL FILES WITHOUT ASKING FOR YOUR 
+CONFIRMATION. USE IT CAREFULLY AND WITH EXTREME CAUTION!!!!!!!!!!!!!
+DO NOT USE HEROIN EVEN IF YOU ARE A GUITAR PLAYER IN A SUCCESSFULL BAND.
+IT WILL RUIN YOUR LIFE.
+
+COPYING AND RENAMING FILES
+---------------------------
+
+To copy a file to another file:
+
+cp file1 file2
+
+the source file1 will be copied to a new file with name file2
+
+cp file1 existing_directory_name
+
+a copy of file1 will be placed in the directory existing_directory_name and it
+will also be named file1 within this directory
+
+mv file1 file2
+
+file1 will be RENAMED as file2  (there will no longer be a file1 found)
+
+
+PRINTING FILES
+---------------
+
+The lpr command is used to print files.  Postscript files should
+be printed to a LASER printer. Text files can be sent to the line
+printer.  Binary files should never be printed (the result will
+be gibberish and a waste of your print quota).  You can use the
+file command to determine a files's type:
+
+ted@brownsugar ~/UnixCommands 4:20pm >file ECE_UNIX_guide
+ECE_UNIX_guide: English text
+
+ted@brownsugar ~/Keith 4:20pm >file keith_s1.ps.bz2
+keith_s1.ps.bz2:        data
+
+ted@brownsugar ~ 4:20pm >file virtex2_quote.ps
+virtex2_quote.ps:       PostScript document
+
+lpr -Plpm ECE_UNIX_guide   will print to the line printer the text file
+called ECE_UNIX_guide.
+
+lpr -Phpl2 virtex2_quote.ps  will print to the laser printer named
+hpl2 the Postscript document called virtex2_quote.ps
+
+
+You can also use the enscript utility to convert an ASCII text file
+into Postscript (it will wrap any long lines onto the next line so that
+nothing is cut off from the right hand margin) and then print the
+formatted file to a laser printer:
+
+enscript -Phpl2 some_ASCII_text_file
+
+
+You can print single-sided documents using the -Zsimplex option with the
+lpr command. You will be charged only one page of print quota if you use
+the -Zsimplex option:
+
+lpr -Phpl2 -Zsimplex a_file.ps
+
+
+By default, ECE's laser printers are set to work in the duplexing mode.
+To conserve paper, your multi-page documents are printed on both sides of
+each sheet of paper. This, unfortunately, means that if you send a print
+job consisting of only one page of text or graphics, you'll be charged two
+pages, because the printer runs the paper through its printing mechanism
+twice, and registers two pages. Similarly, for actual three pages printed,
+four pages will be deducted from your laser print quota.
+
+
+CHECKING THE STATUS OF PRINT JOBS
+--------------------------------
+
+The lpr command spools print jobs to a print queue. 
+
+ted@brownsugar ~ 4:21pm >lpq -Phpl2
+Printer: hpl2@atf  'HP LaserJet 4si PostScript in H-906'
+ Queue: no printable jobs in queue
+ Status: server finished at 16:04:05
+ Filter_status: ofhp Accounting process exited, status 0x0 at Jul 19 16:04:05 
+ Rank   Owner/ID                   Class Job  Files               Size Time    
+error   s_santor@irs+229               A  229 ERROR: IO error 'No Error', at 16:02:29
+error   sr_hasan@fda+291               A  291 ERROR: IO error 'Broken pipe', at 23:34:52
+  
+
+the lpq -Pprinter_name command is used to check the status of a given print queue.
+
+lpquota -Pprinter_name  is used to check your print quota.
+
+ted@brownsugar ~ 4:23pm >lpquota -Phpbw
+Login       Printer          Used     Limit      Runs
+=====================================================
+ted         hpbw            15600     20000      2817
+
+
+Thus far, I have printed 15600 pages on the laser printer called
+hpbw. My quota on this printer is 20000.  Your print quota is set
+to a significantly lower figure. Manage it accordingly.
+
+When you exceed your print quota, you will not be able to print any
+files.  If you experience difficulty in printing, check your quota.
+
+To remove a job from the print queue:
+
+If you inadvertantly sent a binary file to a printer, you may remove it
+from the queue before it uses up pages and pages of your print quota:
+
+lprm -P<printername> job_number
+
+where <printername> is the printer you send the file to
+      job_number  is the Job number of your print job as indicated
+                  in the 4th column of the lpq output.
+
+
+Refer to the Printing Policy and FAQ (Frequently Asked Questions) Printing
+documents on the ECE Web site for more information regarding printing of
+documents. Use netscape to go to http://www.ece.concordia.ca
+
+DISK QUOTA
+---------
+
+You are assigned a default disk quota of 25 Mbyte.  Use the quota
+command to see how much disk space you are occupying:
+
+ted@brownsugar ~ 3:28pm >quota
+Disk quotas for ted (uid 10025):
+Filesystem     usage  quota  limit    timeleft  files  quota  limit    timeleft
+/usr/local   1080416 1750000 2000000              25156 500000 1000000            
+/home/t/ted    1080416 1750000 2000000              25156 500000 1000000            
+/stage/mail  1080416 1750000 2000000              25156 500000 1000000          
+
+The numbers reported are in kbytes.  Hence, I am currently using 1080416 kbytes
+of disk space (a little over 1 Gigbyte). My limit is set to 2 GB.  Strange
+things happen when you reach your disk quota (files cannot be saved, programs
+produce strange and erratic results, etc).  When in doubt check your disk
+quota.  
+
+You can save a bit of disk space by COMPRESSING infrequently used files with the
+
+bzip2 filename
+
+The file can be uncompressed with the 
+
+bunzip2 filename.bz2
+
+(when you compress a file, it will be saved with a .bz2 extension)
+
+Let's see how well bzip2 compresses files:
+
+ted@brownsugar ~/Keith 4:49pm >ls -al leather_and_tele.ps.bz2
+-rw-------   1 ted      staff       40010 Apr 11 13:45 leather_and_tele.ps.bz2
+
+
+ted@brownsugar ~/Keith 4:50pm >ls -al leather_and_tele.ps
+-rw-------   1 ted      staff      484867 Apr 11 13:45 leather_and_tele.ps
+
+
+not bad... a compression ratio of 484867/40010 = 12.11
+
+
+Another big disk usage is your .netscape/cache directory.  When you
+use Netscape, it creates a cache directory in ~/.netscape/cache  (~ is your
+home directory).  This cache can consume lots of disk quota. Periodically
+clean up your Netscape cache:
+
+ted@brownsugar ~ 4:53pm >cd .netscape/cache
+ted@brownsugar cache 4:53pm >ls
+01  04  08  0A  0D  0E  0F  10  11  12  13  14  15  1D  index.db
+
+ted@brownsugar cache 4:53pm >rm -rf *
+ted@brownsugar cache 4:53pm >
+
+(NOTE: one can set the default Netscape Cache size to 0 from Edit -> Preferences
+       of the Netscape window.)
+
+Obtaining a listing of your disk usage
+-------------------------------------
+
+
+The du command will output a listing showing the disk usage of each file in
+your account in a directory-by-directory style:
+
+13544   ./Mail/inbox
+1385    ./Mail/drafts
+35      ./Mail/SMIERDZI
+108     ./Mail/FORMALCHECK
+234     ./Mail/INTELLICAD
+33      ./Mail/MORGAN_KAUFMANN
+2911    ./Mail/MEMSPRO
+3042    ./Mail/CAD@CMC
+12      ./Mail/SHUTDOWN
+51      ./Mail/IEEEPRESS
+70      ./Mail/MENTOR
+9       ./Mail/TOOLS
+3       ./Mail/test_folder
+569     ./Mail/XILINX
+
+
+This is helpful to track down directories which are occupying large amounts of
+disk space and which are in need of either removal or compression.
+
+
+USING ELECTRONIC MAIL
+--------------------
+
+The simplest method of sending email is with the mail command:
+
+ted@brownsugar ~ 5:03pm >mail k_vitoro@ece.concordia.ca
+Subject:  This is a test (press return key)
+
+
+Hello Kostas:
+
+This is being put in the Unix guide.
+
+Ted
+
+Simply type mail <someone's_email_address> and press return.
+you will be prompted to type in the Subject.
+
+Next, compose the body of your text.
+
+To send the mail, press the Control key and the D key at the same time.
+This is the character for END OF TEXT. Your mail will be sent.
+
+Guess which editor the mail command uses? That's right, good old vi.
+You can also create a text file and send it using:
+
+mail k_vitoro < this_is_some_file_name
+
+ADVANCED MAIL PROGRAMS
+--------------------
+
+The 'mail' program is quite primitive.
+There are other mail programs with more features.
+
+I like to use the 'mh' set of mail utilities which include:
+
+inc    (incorporate new mail into your inbox whenever you see the message
+        You have mail).
+
+show   (show the mail you have just incorporated into your inbox)
+
+next    show the next mail
+prev    show the previous mail
+scan    obtain a listing of all your mail in your inbox directory
+
+comp    Compose a mail with the vi editor. Enter the person's email
+       address in the To: line, if you want carbon copies sent to people
+       indicate their addresses on the cc: line, put a small subject in the
+       Subject: line. Then compose the body of the mail.  To send the mail,
+       Esc :wq  
+     
+
+   once you save the draft, you will be prompted with:
+
+What now? enter a ? to get a list of possibilities:
+
+edit [<editor> <switches>]
+  refile [<switches>] +folder
+  mime [<switches>]
+  display [<switches>]
+  list [<switches>]
+  send [<switches>]
+  push [<switches>]
+  whom [<switches>]
+  quit [-delete]
+  delete
+
+
+type s to send your mail.
+
+Directories used my the 'mh' set of utilities
+---------------------------------------------
+
+The mh mail utilities use the ~/Mail directory to store files in:
+
+in this directory will be directories:
+
+inbox    : used to store incoming mails once you have incorporated them
+drafts   : used to store your drafts
+
+You should periodically clean up these directories. They tend to grow
+in size quite rapidly especially if your incoming mail contains attachments.
+Speaking of attachments.....
+
+
+Mail Attachments
+
+In order to send binary files through e-mail, they must be first
+encoded. This encoding creates an e-mail attachment. An
+attachment must be decoded before it can be used. The most
+common attachment format is MIME, or Multipurpose Internet
+Mail Extensions. Pine is able to handle MIME attachments
+automatically. Just press the 'V' key to view a list of the
+attachments, and the the 'S' key to save them into your home
+directory.
+
+Sometimes, however, you may receive an attachment which pine
+does not recognize. The attachment might be the older
+'UUencode' method, or in BinHEX format from a Macintosh. In
+that case, you need to save the entire e-mail into a file in your
+home directory so that you can decode it. Using pine, press the
+'E' key to export a message into a file.
+
+Once the file is saved in your home directory, you can use
+UUDeview to decode it. UUDeview understands almost all
+e-mail attachment formats, and it is reasonably good at figuring
+out which part of your saved e-mail needs to be decoded. If you
+saved the email into a file named 'filename', then type:
+
+[system] [/home/username] > uudeview
+filename
+Loaded from filename: ''
+(somepicture.gif): somepicture.gif part 1
+begin end UUdata
+
+Found 'somepicture.gif' State 16 UUdata
+Parts begin 1 end OK
+
+-rwx------ somepicture.gif is OK [d]
+(?=help) d
+File successfully written to
+/home/username/somepicture.gif
+1 file decoded from 1 input file, 0 failed
+
+The default action for UUDeview is 'd' for decode, so you can
+just press return if you want. After you have decoded the
+attachment, you may want to remove the saved e-mail to save
+disk space. Encoded attachments are always larger than the
+decoded files.
+
+Help on decoding with UUDeview is available if you press '?' at
+the prompt, or in the uudeview man page (type: man
+uudeview).
+
+
+
+
+
+The ECE Web Site contains a simple guide to using the popular PINE mail
+program. I took the liberty of copying the following from the Web site
+ into this guide.
+
+
+One may invoke the Netscape Navigator Browser by simply typing netscape
+from your prompt:
+
+ted@flash ~/UnixCommands 4:57pm >netscape &
+
+(Notice the use of the & to start Netscape and have it run in the background, this way
+you will be able to enter commands from the prompt after your Netscape window appears.
+Had you not used the & , you would not be able to enter commands until you quit the
+Netscape application).  The ECE home page is found at http://www.ece.concordia.ca.
+Select the Documentation link and read all the information found therein.
+
+
+
+This document is an introduction electronic mail (e-mail)
+facilities available at ECE. It is not meant as a comprehensive
+guide, but should be helpful to get you started. 
+
+If you are just starting out, we recommend pine. It combines
+ease and convenience of use with a simple text-based interface. 
+
+In this document, any text that represents what you see on the
+computer screen will be in monospaced font. Commands
+that you should type will be in heavy monospaced font.
+For example, if you see:
+
+[system] [/home/username] > pine 
+
+then at a prompt similar to the one shown, you should type the
+letters 'pine' and press the 'Enter' key. 
+
+Table of Contents
+
+   Mail User Agents: 
+      UNIX (Solaris) 
+        PINE 
+   Accessing mail remotely 
+      IMAP 
+      POP 
+   Mail forwarding 
+   Attachments (MIME, UUencode, BinHEX) 
+
+
+
+
+Pine
+
+Pine is a straight forward mailer that allows you to send and
+receive e-mail, including attachments, with a minimum of fuss.
+It nevertheless has powerful features that make it very versatile. 
+
+Starting Pine
+
+You should be able to start pine on any ECE system simply by
+typing
+
+[system] [/home/username] > pine 
+
+The first time you run pine it will create a directory called 'mail'
+in your home directory for your mail folders. It will also present
+you with a request to be counted as a pine user. Press 'Enter' to
+be counted, or 'E' to skip this step. 
+
+Using Pine
+
+You are now presented with the main pine menu screen:
+
+  PINE 4.33   GREETING TEXT                                                            No Messages  
+
+                              <<<This message will appear only once>>>
+
+                                   Welcome to Pine version 4.33!
+
+Your Pine configuration file indicates that you may not have used this version of Pine
+before. This version's significant changes are documented in the Release Notes, which may be
+viewed by pressing "R" now or while in the Main Menu.
+
+SPECIAL REQUEST: This software is made available world-wide as a public service of the
+University of Washington in Seattle. In order to justify continuing development, it is
+helpful to have an idea of how many people are using Pine. Are you willing to be counted as a
+Pine user? Pressing Return will send an anonymous (meaning, your real email address will not
+be revealed) message to the Pine development team at the University of Washington for
+purposes of tallying.
+
+                        Pine is a trademark of the University of Washington.
+
+
+
+
+
+
+
+
+                                       [ALL of greeting text]
+? Help          E Exit this greeting                   - PrevPage   % Print         R RelNotes      
+              Ret [Be Counted!]                      Spc NextPage                                  
+                                
+
+
+
+
+  
+
+
+The available options are always listed in a menu at the bottom
+of the pine window. You can often use the 'O' key to access
+'Other Commands'. Pressing the 'O' key repeatedly will cycle
+through all of the available commands. 
+
+To view your messages, press the 'I' key, or use the arrow keys
+to scroll up to 'MESSAGE INDEX' and press 'Enter'. You can
+reply to a message with the 'R' key, or compose a new message,
+use the 'C' key. You can get help at any time with the '?' key.
+To quit, use the 'Q' key. As you can see it is pretty
+straight-forward. 
+
+Information on Using Pine
+
+Pine is a very popular mailer. There are many sources of
+information and help for pine. IITS suggests pine as the mailer
+for Alcor, and maintains a help page about it at
+http://alcor.concordia.ca/topics/email/pine
+
+At the University of Washington, where pine was created, there
+are a number of documents for helping users with pine: 
+
+   Getting Started with Pine 4: the basics of Pine 4; see also the
+   Pine 3.96 version) 
+   The Pine FAQ: Frequently Asked Questions about Pine 
+   User's Guide: explanations of Pine's functions, derived from
+   Pine's online help text (created for Pine 3.94) 
+   Electronic Mail Using Pine: the instructional video series
+   and UWTV program 
+   Documentation and other supporting resources for Pine at
+   other sites 
+
+
+
+
+Accessing Mail Remotely
+
+In order to access your mail remotely, you will have to connect
+your system to the Internet. You may choose to connect to a
+commercial ISP, or to Concordia's own dial-up services.
+Remote e-mail access is possible either way, but the
+configuration settings are not identical. 
+
+Most standard e-mail clients can be used to access your ECE
+mail. The following settings will be required: 
+
+SMTP server
+
+Your SMTP server is used to send new messages from you to
+other users. If you connect to Concordia's dial-up services,
+configure your mail client with the following settings: 
+
+   SMTP server: smtp.concordia.ca 
+
+If you are using a commercial ISP, please ask your ISP for the
+correct value for your SMTP server. The concordia SMTP server
+will not work for all the e-mail you send. 
+
+IMAP
+
+IMAP is the recommended protocol for accessing your ECE
+mail. Any IMAP compatible mail client (Netscape, Microsoft
+Outlook, etc) can be used to access your ECE mail. Configure
+your mail client with the following settings: 
+
+   IMAP Server: imap.ece.concordia.ca 
+   Mail folder: INBOX 
+
+POP
+
+POP (Post Office Protocol) is an older e-mail access method.
+Use of POP is not recommended. In particular, if you must use
+POP, you must be aware that messages you read on one system
+(for instance, at home) may be unavailable to you on other
+systems (in the ECE labs). Additionally, many e-mail clients
+(Netscape) restrict mail configuration to only one POP account,
+while with IMAP multiple accounts may be accessed
+simultaneously. 
+
+To use POP, configure your mail client with the following
+settings: 
+
+   POP Server: pop.ece.concordia.ca 
+   Leave mail on server (this is needed if you intend to access
+   your mail from more than one computer) 
+
+
+
+
+Mail Forwarding
+
+It is sometimes useful to have your e-mail automatically
+forwarded to another e-mail address. For instance, if you prefer
+to read your e-mail on Alcor, you might want all your ECE mail
+to be resent to Alcor. 
+
+Forwarding your mail
+
+To do this, create a file in your home directory named
+.forward which contains the e-mail address to which you
+want your e-mail forwarded. There are many ways to do this,
+using any of the text editors available at ECE. The simplest
+method is to type: 
+
+[system] [/home/username] > cat >
+~/.forward
+myname@remote.site.com
+^D 
+
+You of course need to specify a real e-mail address instead of
+'myname@remote.site.com'. The ^D symbol means Control-D,
+that is to press and hold the Control key and then simultaneously
+press 'D'. 
+
+It is VERY IMPORTANT that you test this right away. If you
+have made any mistakes, or for any reason mail to the address
+you typed is not deliverable, you will LOSE any e-mail sent to
+you, and you will not even receive any notification! So
+immediately send yourself test e-mail, and check at the remote
+site that your test e-mail arrived correctly. 
+
+Forwarding a copy of your mail
+
+It is also possible to send one copy of your e-mail to a remote
+address, while at the same time saving a copy to read locally at
+ECE. To do this, add your ECE username in front of the remote
+address, like this: 
+
+[system] [/home/username] > cat >
+~/.forward
+\username,myname@remote.site.com
+^D 
+
+NOTE the backslash '\' in front of your ECE username, and the
+comma ',' that separates your ECE username from the remote
+mail address. 
+
+Once again, it is very important that you test your new mail
+forwarding immediately to avoid losing e-mail! 
+
+Stopping mail forwarding
+
+If at any time you wish to stop forwarding your e-mail, simply
+remove the .forward file from your account: 
+
+[system] [/home/username] > rm ~/.forward
+rm: remove `/home/username/.forward'? y 
+
+
+
+
+Using other systems remotely:
+-----------------------------
+
+You are busy working on an assignment which is due the next day at
+8:45 A.M. The machine you are working on appears to be very slow;
+most likely it is heavily loaded with users.  You check the top
+user processes with the 'top' command:
+
+ted@brownsugar ~ 4:51pm >top
+load averages:  3.05,  3.02,  3.02                                                         17:37:21
+55 processes:  51 sleeping, 4 on cpu
+CPU states: 23.0% idle, 75.0% user,  1.8% kernel,  0.2% iowait,  0.0% swap
+Memory: 4096M real, 926M free, 2074M swap in use, 3311M swap free
+
+  PID USERNAME THR PRI NICE  SIZE   RES STATE   TIME    CPU COMMAND
+ 2613 tout       1  20    0  653M  650M cpu3   68.9H 24.99% vhdlsim
+  997 tout       4  20    0  217M  194M cpu2   69.0H 24.97% dc_shell_exec
+10584 tout       4  20    0 1230M 1208M cpu0   24.0H 24.95% dc_shell_exec
+14860 ted        1   0    0 1576K 1328K cpu1    0:01  1.16% top
+14828 root       1  58    0 2096K 1720K sleep   0:00  0.04% sshd1
+  172 root       5  58    0 4200K 3664K sleep   2:54  0.04% automountd
+14831 ted        1  48    0 2392K 2128K sleep   0:00  0.03% tcsh
+  270 root       1  48    0 1896K 1080K sleep   1:10  0.00% sshd1
+  199 root       9  40    0 3472K 3024K sleep   0:11  0.00% nscd
+ 3507 root       1  58    0 2360K 1984K sleep   0:08  0.00% sshd1
+14730 k_vitoro   5  59    0   24M   18M sleep   0:03  0.00% dsgnmgr
+ 3510 dana       1  58    0 2616K 2040K sleep   0:02  0.00% bash
+10120 root       1  58    0 2192K 1888K sleep   0:02  0.00% sshd1
+  148 root       1  58    0 2112K 1656K sleep   0:02  0.00% inetd
+  184 root      14   0    0 3680K 2200K sleep   0:01  0.00% syslogd
+
+
+(Ok.. dea is not that busy on a summer July 19 day...)
+
+You type q to return back to the UNIX prompt:
+
+You decide to remotely log onto another (less heavily loaded) workstation 
+using the ssh command (secure shell):
+
+ted@dea ~ 5:41pm >ssh fbi
+Last login: Thu Jul 19 17:41:36 2001 from hamming.ece.conc
+              Department of Electrical and Computer Engineering
+                             Message of the Day
+===========================================================================
+Get more information on the MOTD web page: http://www.ece.concordia.ca/motd
+===========================================================================
+
+  ---------------------------------------------------------------------
+  Removal of Restrictions on Operating Hours of ECE Printing Facilities
+                           H-906 Door Code Change
+  ---------------------------------------------------------------------
+
+Effective February 16th, operating hours of ECE Printing Facilities (H-906) 
+are returning to their original schedule (24 hour access).
+
+Effective immediately, H-906 door code becomes 4 2 (1,5), which reads:
+press 4, then press 2, then press 1 and 5 together.
+
+===========================================================================
+                         DO NOT REBOOT SYSTEMS.
+Please email 'help@ece' from another terminal if you need assistance.  
+===========================================================================
+Last change: 2001-05-16
+You have new mail.
+ted@fbi ~ 5:41pm >
+
+
+You check who is logged on to 'fbi':
+
+ted@fbi ~ 5:41pm >w
+  5:42pm  up 10 day(s),  4:17,  1 user,  load average: 0.06, 0.02, 0.02
+User     tty           login@  idle   JCPU   PCPU  what
+claude   pts/0        Wed11am 30:16      1         -tcsh
+ted      pts/1         5:41pm                      w
+
+
+Bingo! Only you and another user. You decide to run your programs on
+'fbi' and are able to finish your work early so you go cycling to
+Mount Royal.
+
+Checking process status:
+----------------------
+
+To obtain a list of all your processes running on a given machine :
+
+ps -auxww | grep <login_name>
+
+for example,
+
+ted@fbi ~ 5:42pm >ps -auxww | grep ted
+ted       8588  0.1  0.2 1032  776 pts/1    S 17:44:26  0:00 grep ted
+ted       8557  0.0  0.5 2352 1984 pts/1    S 17:41:56  0:00 -tcsh
+
+
+Killing stray processes:
+
+From time to time, an application will not exit properly and its
+processes will continue to run even after you logout (see end of this
+guide to learn how to logout). You can kill such processes with the
+
+kill process_id_number
+
+where  process_id_number is the Process ID reported in the second column of
+the output produced by the ps command:
+
+kill 8557
+
+will kill the  tcsh process owned by ted.  You can only kill processes
+which you are owner of.
+
+Running long processes in the background 
+----------------------------------------
+
+Suppose you have some binary executable program which is called
+keith. You can run this program in the background, and as long as
+you are logged in it will continue to run:
+
+ted@brownsugar ~/Coen240 5:51pm >file keith
+keith:          ELF 32-bit MSB executable SPARC Version 1, dynamically linked, not stripped
+
+
+(good thing keith is not stripped...)
+
+ted@brownsugar ~/Coen240 5:52pm >keith &
+[1] 6941
+ted@brownsugar ~/Coen240 5:52pm >
+
+
+The & is used to specify that a process should be execute in the background.
+
+
+Use the ps -a command to obtain a listing of all currently active processes
+(even those in the background)
+
+ted@brownsugar ~/Coen240 5:57pm >ps -a
+   PID TT       S  TIME COMMAND
+  6468 pts/0    S  0:01 -tcsh
+  6470 pts/1    S  0:04 -tcsh
+  6941 pts/1    R  5:04 keith
+  6960 pts/1    O  0:00 ps -a
+
+
+process keith appears listed with process id 6941.  Background processes
+which are started in this manner will continue to run in the background
+until:
+
+a) they terminate on their own because they have finished whatever
+    they were doing
+
+b) the user logs out from his current session.
+
+
+What do you do if you want to logout (to go home for the evening),
+but you do not want any background processes you may have started
+to be terminated upon logout?  The answer is to use the
+
+nohup 
+
+command to make your background process immune to terminate signals
+generated upon the user logging out.
+
+
+
+ted@brownsugar ~/Coen240 6:08pm >nohup keith &
+[1] 6986
+
+I will now logout and relogin and check whether keith is still running.
+
+
+ted@brownsugar ~ 6:23pm >ps -auxww | grep keith
+ted       6986 90.7  0.3  836  344 ?        R 18:08:25 10:17 keith
+ted       7253  0.3  0.4  988  656 pts/0    S 18:23:46  0:00 grep keith
+
+Yes, note the use of the -auxww option to ps ( a simple ps -a did not list
+this nohup background process...)
+
+
+Using the /usr/bin/nice command to change a processes priority:
+--------------------------------------------------------------
+
+you should change the default priority level of a process when it
+is run in the background for a long time so that it will not slow down
+the system performance.
+
+/usr/bin/nice -19 nohup keith &
+
+the -19 option is used to give the lowest priority value the
+the background process called keith.
+
+
+
+YOUR PATH SETTING
+---------------
+
+Suppose you have a program you wish to run.  It's name is
+nan.  The binary file nan has execute permission set on it,
+the file command tells you it is an executable file:
+
+ted@flash ~/Coen240 5:20pm >file nan
+nan:            ELF 32-bit MSB executable SPARC Version 1, dynamically linked, not stripped
+
+
+You want to run this file, so you simply type the name at the prompt:
+
+ted@flash ~/Coen240 5:20pm >nan
+nan: Command not found.
+ted@flash ~/Coen240 5:21pm >
+
+
+What went wrong???? You use your knowledge of UNIX and use the ./nan to specify
+the full UNIX pathname:
+
+ted@flash ~/Coen240 5:21pm >./nan
+NaN
+
+The program works correctly (the program prints the value NaN (not a number) to
+screen ).
+
+Why did the program not run when you simply type nan from the prompt?
+
+UNIX has special variables called environment variables. One of these is called
+path.  The value of the path  variable tells the operating system which directories 
+to search for when looking for files.  Your default path setting most likely does
+not contain your present working directory (.)   This can be rectified by doing the
+following from the prompt:
+
+
+ted@flash ~/Coen240 5:26pm >set path = ( $path ./ )
+
+
+We can check the value of the variable as follows:
+
+ted@flash ~/Coen240 5:27pm >echo $path
+/opt/SUNWspro/bin /usr/local/bin /usr/ucb /usr/bin /bin /site/bin /usr/lang /site/bin/simulators /site/bin/X11 /site/openwin/bin /site/bin/TeX /interleaf/tps4.0/user /usr/valid/tools/bin /site/bin/matlab /site/bin/mtools /etc /usr/etc /site/mmdf/bin /usr/local/bin /home/t/ted/bin /usr/local/acrobat3/bin/distill /home/t/ted/bin /usr/demo/SOUND/soundtool /CMC/tools/cadence/IC/tools/dfII/bin /opt/SUNWadm/2.2/bin /usr/ccs/bin /usr/local/frame55/bin /usr/openwin/bin /CMC/tools/silvaco_2000/bin /CMC/tools/intellisense/IntelliCad/bin /home/t/ted/SIS/sis-1.2/bin /home/t/ted/bin /usr/local/maple/bin ./
+
+
+Note how the ./ appears at the end.  My path is quite long, yours may look
+different.
+
+Now if you simply type, nan from the prompt, the system will check for the existence
+the nan file in your working directory and run it :
+
+ted@flash ~/Coen240 5:28pm >nan
+NaN
+
+HOW TO LOGOUT
+------------
+
+1. Make sure that you gracefully exit from every application
+   you have currently running. Most utilities have some sort
+   of menu such as File -> Quit.
+
+2. Move the mouse cursor to any portion of your background window 
+   and press the right mouse button. Select : Yes, Really Quit.
+
+
+
+AUTOMATIC BACKUPS OF YOUR FILES
+--------------------------------
+
+
+Effective Monday, May 14th, 2002, all users of ECE's computing resources
+can access a "Snapshot" system of on-line backups.  This allows users to
+recover their own files and directories without aid from a Systems
+Administrator.  "Snapshots", which are created at regular intervals, are
+frozen, read-only copies of your home directory.  You may access your
+personal "Snapshots" in the ".snapshot" subdirectory of your home
+directory.  The files found there DO NOT count towards your total disk
+quota usage.
+
+The current schedule (which is subject to change, until an optimal
+backup strategy is established) creates no weekly snapshots, it creates a
+snapshot every night, and keeps two, and it creates hourly snapshots at 8
+AM, noon, 4 PM, and 8 PM, and it keeps six. Whenever a new snapshot of a
+particular type is created, the oldest one is deleted, and the existing
+ones are renamed.
+
+If you wish to learn more about recovering lost files from "Snapshots",
+point your web browser to "http://www.ece.concordia.ca/netapp/".
+
+
+
+LEARNING MORE ABOUT UNIX
+-------------------------
+
+One can learn more about the UNIX operating system
+from the following books:
+
+1) Learning the UNIX Operating System
+   Peek, Todino, & Strang
+   O'Reilly and Associates
+   ISBN : 1-56592-390-1
+   Price: CAN $21.95
+
+A 92 page, softcover book containing "a concise introduction telling
+you what you need to get started, and no more". It features an illustration
+of a horned owl on its cover. I was surprised to learn from the Colophon at
+the end of this book that horned owls locate their prey by sound rather than
+sight.... 
+
+2) A practical Guide to Solaris
+   Mark G. Sobell
+   Addison-Wesley
+   ISBN 0-201-89548-X
+   Price: CAN $68.95
+
+A 1 112 page wealth of UNIX information. Sobell writes in an informative,
+easy to read manner.  
+
+3) UNIX: The Complete Reference
+   Rosen, Host, Farber, Rosinski
+   Osborne-McGraw Hill
+   ISBN 0-07211992-X
+   Price : US $39.99
+
+The complete works, 1302 pages covering all variants of UNIX includingLinux,
+Solaris, and HP-UX.
+
+4) Your UNIX: The Ultimate Guide
+   S. Das
+   McGraw-Hill
+   ISBN 0072405007
+
+ My personal favorite UNIX book.... 
+
+There are also many book in the Concordia Webster Library available.
+
+
+SENDING MAIL TO help@ece.concordia.ca
+-------------------------------------
+
+
+Should you encounter a problem with your computer account or
+any software available from ECE facilities please send a
+DETAILED email addressed to helpdesk@ece.concordia.ca describing
+the problem. Include the following in your mail:
+
+1) your name
+2) the course name and number you are using the application for
+3) a description of the problem you are experiencing
+4) the hostname of the computer you were using when the problem
+   occurred.
+5) any error messages or warning which may have been generated
+   by the program 
+
+Please try to provide as much information as possible.  We receive
+many emails from users reporting problems and yet they do not
+provide enough information as to determine the cause of the problem.
+Consider the following emails which have been sent to help@ece in
+the past:
+
+Date:    Tue, 30 Mar 1999 12:06:32 EST
+To:      help@ece.concordia.ca
+From:   
+Subject: Recovey of deleted directories
+
+Return-Path:  
+Return-Path:
+MIME-Version: 1.0
+
+I was working in Lab 915 on terminal "butthead" and mistakenly I gave
+command "rm -rf *" in my home directory at 11:45 a.m.(March 30,1999).
+My 1 years work is deleted. I had finished my project which was in
+directory "e654" & I have project meeting today in which I have to show my
+project.Can you recover my Directory "e654" today as early as possible.
+Other important dirctories are "VHDL","vhdl".
+My login is "******"
+Please do it as early as possible.
+
+
+Remember what I said about the potential dangers associated
+with the rm -rf * command ?  I was speaking from experience,
+not rhetorically.  This user lost 1 year's work due to carelessness.
+
+The very same person, again deleted files by mistake on
+April 19, 1999:
+
+Date: Mon, 19 Apr 1999 03:19:03 -0400 (EDT)
+From: 
+To: help@ece.concordia.ca
+Subject: restore deleted directories
+
+mistakenly I gave "rm -rf *" command in my home directry and my important
+dirctoties are deleted. Among them are "VHDL", "SILVACO" etc.
+Please restore them as early as possible because I have to submit projects
+which were in them
+Regards
+
+
+
+
+Apparently, this user did not learn from his first mistake.
+Accidents do happen, but for the same accident to happen
+yet another time leads one to question the UNIX abilities
+of the user.  The very same person deleted his files for
+a third time:
+
+
+Date:    Mon, 11 Sep 2000 11:58:16 EDT
+To:      help@ece.concordia.ca
+From:    
+Subject: Deleted files
+
+Return-Path:  
+>From   Mon Sep 11 11: 58:23 2000
+Return-Path: 
+X-Authentication-Warning: flash.ece.concordia.ca:  owned process doing -bs
+MIME-Version: 1.0
+
+
+Hi
+I am a student of Dr. *********  and these days I am writing my
+thesis using frame maker. Yesterday I opened some of the files and did
+some
+modifications  then I  resaved them again. When I tried to open them
+again
+they
+were all gone (I think due to the time out of disk quota) and even the
+files before yesterday's modifications are showing 0 memory space. Can you
+retrive those frame maker files with yesterdays modifications or their
+latest version.
+
+
+
+Three times????? Truth is stranger than fiction, is it not?
+
+
+
+One should also try to solve a problem one one's own before
+sending a mail to help@ece. Consider the following:
+
+Date: Mon, 11 Oct 1999 15:33:24 -0400 (EDT)
+From: 
+To: help@ece.concordia.ca
+
+I cannot run the intellicad software.
+The prof has given me the command:
+source/home/t/ted/ENVIRONMENT/intellicad.env
+but my xterm gives Command not found message.
+
+HELP!
+
+
+Had this user experimented with the source command, he would have realized
+that the problem was the lack of a space character between the command
+'source' and the filename /home/t/ted/ENVIRONMENT/intellicad.env.
+The proper command which would have worked should have been typed
+as:
+
+source  /home/t/ted/ENVIRONMENT/intellicad.env
+
+Had this tutorial guide been available to this user, I am confident
+that the knowledge contained in it would have aided this user greatly.
+
+Here is another case of another user deleting files by mistake:
+
+Date:    Mon, 01 Nov 1999 20:42:23 EST
+To:      help@@ece.concordia.ca
+From:    
+Subject: Urgent
+
+Return-Path: @ece.concordia.ca 
+Return-Path: @ece.concordia.ca>
+
+Hi, 
+
+I just removed all my files by mistake. I would appreciate that if you could  recovery them for me.
+
+Best regards,
+
+
+
+There seems to be a repeating pattern here....
+
+
+The following is an example of a mail sent to help which does
+not contain sufficient information:
+
+Date:    Thu, 26 Jul 2001 14:38:30 EDT
+To:      <help@ece.concordia.ca>
+From:  
+Subject: no more papers
+
+Return-Path: 
+Delivery-Date: Thu Jul 26 14:38:33 2001
+>From b_tamayo  Thu Jul 26 14: 38:33 2001
+Return-Path:
+X-Authentication-Warning: parrot.ece.concordia.ca: owned process doing -bs
+MIME-Version: 1.0
+
+
+Hi there,
+    There's no more papers in the print, thanks.
+
+
+ECE supports many different printers, some are located in different buildings.
+The sender of this mail did not mention the printer name.  Luckily, one of the
+ECE staff deduced that it was the printer in room H906.
+
+

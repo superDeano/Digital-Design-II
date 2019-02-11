@@ -1,0 +1,98 @@
+//1. To start the Modelsim environment
+
+source /CMC/ENVIRONMENT/modelsim.env
+
+//Modelsim is used to simulate the code from VHDL
+
+//Use vcom to compile the files
+vcom [fileName]
+
+
+//Use vsim to simulate the files without the .vhd which have been compiled
+vsim [fileName] &
+
+//Modelsim then opens
+Click on one of the objects then ADD -> To Wave -> Signals in Region
+
+//4. Then Create -- Load the DO File in the DO directory
+vsim -do ../DO/[fileName].do &
+//That's to see the simulation
+
+//5. Precision to start Synthesis
+source /CMC/ENVIRONMENT/fpga_advantage.env
+
+//then run Precision
+precision &
+
+//Start new project from Precision, set location to FPGA_ADV
+Add all Files to the project (the VHDL files)
+//Setup Design
+Select Xilinx -> VIRTEX-II PRO -> DEVICE 2VP30Off896
+ADD Frequency
+//Compile
+
+//Synthesize
+//RTL Schematics
+
+
+//Start technology Mapping
+//7 Open XIlinx
+//Move to xilinx directory before 
+source /CMC/ENVIRONMENT/xilinx.env
+
+ise &
+
+//Create new project in Xilinx
+Top Level resource, select EDIF //Because that's what we got from Synthesis
+
+
+//Selecting the Input Design file
+Select the .EDF file from the directory which the project was previously run from ISE.
+
+//Selecting the Constraint file
+The .UCF file should be written with this:
+
+CONFIG STEPPING="0";
+NET carry_in LOC = AC11;
+NET input1 LOC = AD11;
+NET input2 LOC = AF8;
+NET carry_out_neg
+LOC = AC4;
+NET sum_out_neg LOC = AC3; 
+
+
+//Select Next
+specify the following:
+
+Device Family: Virtex2P
+Device: xc2vp30
+Package: ff896
+Speed Grade: -7
+Top_level Module Type: EDIF
+Simulator: Other
+
+//Project finished in xilinx
+Click on File, the .edf File
+Double click on Inplement Design below;
+Right Click on Generate Design -> Properties -> Clock JTAG CLK;  //IMPORTANT!!!
+Then Generate the Programming File & Close
+
+
+//Now loading the bit file 
+//Run impact
+impact&
+//Create a new project
+Select Prepare a System ACE File
+
+Specify Collection name and location //Location is where the xilinx file was 
+
+Select Configuration Address 0 only
+
+Finish then  Add the .bit file;
+
+
+
+//To be continued to run the file on the FPGA ...
+
+
+TO negate an output, use it as a signal

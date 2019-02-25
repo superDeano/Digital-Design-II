@@ -1,0 +1,302 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: nlviewTK
+%%Title: module-.work.converter.converter_arch_XRTL
+%%BoundingBox: 28 28 584 764
+%%Pages: (atend)
+%%DocumentData: Clean7Bit
+%%DocumentNeededResources: font Helvetica
+%%EndComments
+
+%%BeginProlog
+50 dict begin
+/rectpath {
+    newpath 2 copy moveto
+    4 1 roll 1 index lineto
+    2 copy lineto
+    pop exch lineto
+    closepath
+} bind def
+/line {
+    newpath moveto lineto stroke
+} bind def
+/rect {
+    newpath rectpath stroke
+} bind def
+/filledrect {
+    newpath rectpath fill
+} bind def
+/dot {
+                                        % stack: offset x y
+    newpath moveto                      % stack: offset
+    dup dup rmoveto 2 mul               % stack: 2off
+    0 exch dup neg dup 0 exch 0 exch    % stack: 0 2off -2off 0 0 -2off
+    rlineto rlineto rlineto             % stack: 
+    closepath gsave fill grestore stroke
+} bind def
+/circle {
+    newpath 2 div 0 360 arc stroke
+} bind def
+/filledcircle {
+    newpath 2 div 0 360 arc fill
+} bind def
+/arcus {
+    newpath arc stroke
+} bind def
+/filledtriangle {
+    newpath moveto
+    lineto
+    lineto
+    closepath gsave fill grestore stroke
+} bind def
+/text {
+                                        % stack: x y rot just_x just_y (str)
+    gsave
+    6 4 roll moveto                     % stack: rot just_x just_y (str)
+    dup stringwidth pop /wid exch def   % string width --> wid
+    4 3 roll                            % stack: just_x just_y (str) rot
+    rotate
+    3 1 roll                            % stack: (str) just_x just_y
+    Fdescent exch
+    2 div Fdescent Fascent add mul sub  % desc - just_y/2 * (asc+desc)
+                                        % stack: (str) just_x ymove
+    exch
+    2 div wid mul neg                   % -just_x/2 * wid
+                                        % stack: (str) ymove xmove
+    exch rmoveto                        % stack: (str)
+    show                                % stack:
+    grestore
+} bind def
+/textsize {
+    currentdict /Ffac known not {
+        % Here we compute Ffac. Ffac is used below to resize the font
+        % in a way that the font's ascent+descent/2 fits the required
+        % text size. We compute Ffac only once, because the font F will
+        % never change.
+        %
+        dup dup F exch scalefont setfont % stack sz sz font
+        gsave
+        newpath 0 0 moveto (XTgq) false charpath
+        pathbbox                        % stack: sz sz l b r t
+        grestore
+        3 2 roll neg 2 div add          % fheight = ascent + descent/2
+        3 1 roll pop pop                % stack: sz sz fheight
+        div
+        /Ffac exch def                  % Ffac = sz/fheight
+    } if
+    Ffac mul F exch scalefont setfont
+    gsave
+    newpath
+    0 0 moveto (XTgq) false charpath pathbbox
+    /Fascent exch def			% top -> ascent
+    pop
+    /Fdescent exch neg 2 div def	% -bottom/2 -> descent
+    pop
+    grestore
+} bind def
+
+% Define the array ISOLatin1Encoding (which specifies how characters are
+% encoded for ISO-8859-1 fonts), if it isn't already present (Postscript
+% level 2 is supposed to define it, but level 1 doesn't).
+systemdict /ISOLatin1Encoding known not {
+    /ISOLatin1Encoding [
+	/space /space /space /space /space /space /space /space
+	/space /space /space /space /space /space /space /space
+	/space /space /space /space /space /space /space /space
+	/space /space /space /space /space /space /space /space
+	/space /exclam /quotedbl /numbersign /dollar /percent /ampersand
+	    /quoteright
+	/parenleft /parenright /asterisk /plus /comma /minus /period /slash
+	/zero /one /two /three /four /five /six /seven
+	/eight /nine /colon /semicolon /less /equal /greater /question
+	/at /A /B /C /D /E /F /G
+	/H /I /J /K /L /M /N /O
+	/P /Q /R /S /T /U /V /W
+	/X /Y /Z /bracketleft /backslash /bracketright /asciicircum
+	/underscore /quoteleft /a /b /c /d /e /f /g
+	/h /i /j /k /l /m /n /o
+	/p /q /r /s /t /u /v /w
+	/x /y /z /braceleft /bar /braceright /asciitilde /space
+	/space /space /space /space /space /space /space /space
+	/space /space /space /space /space /space /space /space
+	/dotlessi /grave /acute /circumflex /tilde /macron /breve /dotaccent
+	/dieresis /space /ring /cedilla /space /hungarumlaut /ogonek /caron
+	/space /exclamdown /cent /sterling /currency /yen /brokenbar /section
+	/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen
+	    /registered /macron
+	/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph
+	    /periodcentered
+	/cedillar /onesuperior /ordmasculine /guillemotright /onequarter
+	    /onehalf /threequarters /questiondown
+	/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla
+	/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex
+	    /Idieresis
+	/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis
+	    /multiply
+	/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn
+	    /germandbls
+	/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla
+	/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex
+	    /idieresis
+	/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide
+	/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn
+	    /ydieresis
+    ] def
+} if
+
+% font ISOEncode font
+% This procedure changes the encoding of a font from the default
+% Postscript encoding to ISOLatin1. The body of this procedure comes
+% from Section 5.6.1 of the Postscript book.
+/ISOEncode {
+    dup length dict begin
+	{1 index /FID ne {def} {pop pop} ifelse} forall
+	/Encoding ISOLatin1Encoding def
+	currentdict
+    end
+    /Fname exch definefont
+} bind def
+%%EndProlog
+
+%%BeginSetup
+%%IncludeResource: font Helvetica
+<< /PageSize [612 792] /Policies << /PageSize 3 >> >> setpagedevice
+%%EndSetup
+
+%%Page: 1 1
+save
+90 rotate
+0 -792 translate
+27.7 764.3 764.2 207.8 rectpath
+clip
+/F /Helvetica findfont ISOEncode def
+1 setlinecap 		% round caps
+1 setlinejoin		% round joins
+0.6 setlinewidth
+434.8 491.2 newpath moveto
+444.8 486.2 lineto
+444.8 481.6 lineto
+434.8 476.6 lineto
+434.8 491.2 lineto
+stroke
+430.8 486.3 434.8 486.3 line
+2.0039 textsize
+434.1 486.6 0 2 0 (in0) text
+430.8 481.3 434.8 481.3 line
+434.1 481.6 0 2 0 (in1) text
+439.9 494.6 439.9 488.6 line
+439.1 491.2 0 2 0 (sel) text
+448.9 483.9 444.8 483.9 line
+445.5 484.2 0 0 0 (out) text
+2.3378 textsize
+441.1 489.2 0 0 0 (twos_comp_mux_0Bus1\(2:0\)) text
+0.2 setlinewidth
+387.1 483.9 13.4 circle
+380.4 486.2 380.7 486.2 line
+393.8 486.2 393.4 486.2 line
+380.4 481.2 380.7 481.6 line
+393.8 481.2 393.4 481.6 line
+376.4 486.3 380.4 486.3 line
+2.0039 textsize
+380.1 486.2 0 2 0 (cin) text
+397.8 486.3 393.8 486.3 line
+394.1 486.2 0 0 0 (cout) text
+0.6 setlinewidth
+376.4 481.3 380.4 481.3 line
+380.1 481.2 0 2 0 (a\(2:0\)) text
+397.8 481.3 393.8 481.3 line
+394.1 481.2 0 0 0 (d\(2:0\)) text
+2.3378 textsize
+387.1 483.9 0 1 1 (+1) text
+386.1 494.3 0 0 0 (twos_comp_inc3_0i1) text
+0.2 setlinewidth
+434.8 508 newpath moveto
+434.8 512 lineto
+444.8 508 lineto
+434.8 504 lineto
+434.8 508 lineto
+stroke
+430.8 508 434.8 508 line
+2.0039 textsize
+434.1 508.3 0 2 0 (in) text
+448.9 508 444.8 508 line
+445.5 508.3 0 0 0 (out) text
+2.3378 textsize
+435.5 512.7 0 0 0 (ix20) text
+0.6 setlinewidth
+330.3 481.3 2.7 circle
+319 481.3 newpath moveto
+319 485.3 lineto
+329 481.3 lineto
+319 477.3 lineto
+319 481.3 lineto
+stroke
+314.9 481.3 319 481.3 line
+2.0039 textsize
+318.3 481.6 0 2 0 (in) text
+335.6 481.3 331.7 481.3 line
+332.4 481.6 0 0 0 (out) text
+2.3378 textsize
+319.7 486 0 0 0 (twos_comp_0n4s1f1_invBus2\(2:0\)) text
+487.9 508 newpath moveto
+487.9 510.3 lineto
+492.6 510.3 lineto
+494.9 508 lineto
+492.6 505.7 lineto
+487.9 505.7 lineto
+487.9 508 lineto
+stroke
+496.2 508 0 0 1 (twos_comp\(3:0\)) text
+0.2 setlinewidth
+366 500 366 501.7 line
+362.7 501.7 369.3 501.7 line
+0.6 setlinewidth
+301.6 508 newpath moveto
+299.3 505.7 lineto
+294.6 505.7 lineto
+294.6 510.3 lineto
+299.3 510.3 lineto
+301.6 508 lineto
+stroke
+293.3 508 0 2 1 (sign_mag\(3:0\)) text
+0.2 setlinewidth
+366 500 newpath moveto
+366 486.3 lineto
+376.4 486.3 lineto
+stroke
+0.6 setlinewidth
+301.6 508 newpath moveto
+308.3 508 lineto
+308.3 479.6 lineto
+stroke
+308.3 508 417.1 508 line
+417.1 486.3 430.8 486.3 line
+308.3 481.3 314.9 481.3 line
+0.6 308.3 508 dot
+417.1 509.6 417.1 484.6 line
+0.2 setlinewidth
+417.1 508 430.8 508 line
+417.1 500 newpath moveto
+439.9 500 lineto
+439.9 494.6 lineto
+stroke
+0.6 setlinewidth
+417.1 506.8 419.6 508 417.1 509.2 filledtriangle
+417.1 498.8 419.6 500 417.1 501.2 filledtriangle
+417.1 485.1 419.6 486.3 417.1 487.5 filledtriangle
+308.3 480.1 310.8 481.3 308.3 482.5 filledtriangle
+481.3 509.6 481.3 482.3 line
+481.3 508 487.9 508 line
+448.9 483.9 481.3 483.9 line
+0.2 setlinewidth
+448.9 508 481.3 508 line
+0.6 setlinewidth
+481.3 509.2 478.8 508 481.3 506.8 filledtriangle
+481.3 485.1 478.8 483.9 481.3 482.7 filledtriangle
+335.6 481.3 376.4 481.3 line
+397.8 481.3 430.8 481.3 line
+restore
+showpage
+%%Trailer
+end
+%%Pages: 1
+%%EOF

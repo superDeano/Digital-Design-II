@@ -42,6 +42,8 @@ begin
 		for at_index in 0 to 2 loop
 
 			-- convert into int
+			--at_index := to_integer(signed(i));
+			
 			if (temp(at_index) = '0') then
 				temp(at_index) := '1';
 			else 

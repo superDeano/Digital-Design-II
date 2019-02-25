@@ -27,7 +27,7 @@ precision &
 //Start new project from Precision, set location to FPGA_ADV
 Add all Files to the project (the VHDL files)
 //Setup Design
-Select Xilinx -> VIRTEX-II PRO -> DEVICE 2VP30Off896
+Select Xilinx -> VIRTEX-II PRO -> DEVICE 2VP3Off896
 ADD Frequency
 //Compile
 
@@ -47,7 +47,7 @@ Top Level resource, select EDIF //Because that's what we got from Synthesis
 
 
 //Selecting the Input Design file
-Select the .EDF file from the directory which the project was previously run from ISE.
+Select the .EDF file from the directory which the project was previously run from Precision.
 
 //Selecting the Constraint file
 The .UCF file should be written with this:
@@ -69,7 +69,7 @@ Device: xc2vp30
 Package: ff896
 Speed Grade: -7
 Top_level Module Type: EDIF
-Simulator: Other
+Simulator: Other VHDL
 
 //Project finished in xilinx
 Click on File, the .edf File

@@ -50,15 +50,37 @@ Top Level resource, select EDIF //Because that's what we got from Synthesis
 Select the .EDF file from the directory which the project was previously run from Precision.
 
 //Selecting the Constraint file
-The .UCF file should be written with this:
+//The user constraint is initially empty.
+The .UCF file should thus be written with this:
 
 CONFIG STEPPING="0";
-NET carry_in LOC = AC11;
-NET input1 LOC = AD11;
-NET input2 LOC = AF8;
-NET carry_out_neg
-LOC = AC4;
-NET sum_out_neg LOC = AC3; 
+NET [name of inputs] LOC = [something];
+NET [name of outputs] LOC = [something];
+
+
+
+IO Connections on the FPGA
+
+SWITCHES:
+SW_1	|	N5
+SW_2	|	L4
+SW_3	|	N2
+SW_4	|	R9
+SW_5	|	M3
+SW_6	|	P1
+SW_7	|	P7
+SW_8	|	N3
+
+LEDs:
+LED1	|	P2
+LED2	|	R7
+LED3	|	P4
+LED4	|	T2
+LED5	|	R5
+LED6	|	R3
+LED7	|	V1
+LED8	|	T6
+
 
 
 //Select Next

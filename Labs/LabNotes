@@ -1,14 +1,12 @@
-//1. To start the Modelsim environment
-
+/* 
+* To start the Modelsim environment
+*/
 source /CMC/ENVIRONMENT/modelsim.env
 
-//Modelsim is used to simulate the code from VHDL
+//2. Use vcom to compile the files
+vcom [fileName].vhd
 
-//Use vcom to compile the files
-vcom [fileName]
-
-
-//Use vsim to simulate the files without the .vhd which have been compiled
+//3. Use vsim to simulate the files without the .vhd which have been compiled
 vsim [fileName] &
 
 //Modelsim then opens
@@ -18,72 +16,54 @@ Click on one of the objects then ADD -> To Wave -> Signals in Region
 vsim -do ../DO/[fileName].do &
 //That's to see the simulation
 
-//5. Precision to start Synthesis
+/*
+* To start Precision Environment
+*/
+//5. To start Precision 
 source /CMC/ENVIRONMENT/fpga_advantage.env
 
-//then run Precision
+//6. then run Precision
 precision &
 
-//Start new project from Precision, set location to FPGA_ADV
+//7. Start new project from Precision, set location to FPGA_ADV
 Add all Files to the project (the VHDL files)
-//Setup Design
+//8. Setup Design
 Select Xilinx -> VIRTEX-II PRO -> DEVICE 2VP3Off896
-ADD Frequency
-//Compile
+Set Frequency: 100.0 MHz
+//9. Compile
 
-//Synthesize
+//10. Synthesize
 //RTL Schematics
 
 
-//Start technology Mapping
-//7 Open XIlinx
-//Move to xilinx directory before 
+/*
+* To start Xilinx
+*/
+//11. Move to xilinx directory before 
 source /CMC/ENVIRONMENT/xilinx.env
 
 ise &
 
-//Create new project in Xilinx
+//13. Create new project in Xilinx
 Top Level resource, select EDIF //Because that's what we got from Synthesis
+//Precision created the .EDF and .UCF files
 
-
-//Selecting the Input Design file
+//14. Selecting the Input Design file
 Select the .EDF file from the directory which the project was previously run from Precision.
 
-//Selecting the Constraint file
-//The user constraint is initially empty.
-The .UCF file should thus be written with this:
+//15. Selecting the Constraint file
+The .UCF file should be written with this:
 
 CONFIG STEPPING="0";
-NET [name of inputs] LOC = [something];
-NET [name of outputs] LOC = [something];
+NET carry_in LOC = AC11;
+NET input1 LOC = AD11;
+NET input2 LOC = AF8;
+NET carry_out_neg
+LOC = AC4;
+NET sum_out_neg LOC = AC3; 
 
 
-
-IO Connections on the FPGA
-
-SWITCHES:
-SW_1	|	N5
-SW_2	|	L4
-SW_3	|	N2
-SW_4	|	R9
-SW_5	|	M3
-SW_6	|	P1
-SW_7	|	P7
-SW_8	|	N3
-
-LEDs:
-LED1	|	P2
-LED2	|	R7
-LED3	|	P4
-LED4	|	T2
-LED5	|	R5
-LED6	|	R3
-LED7	|	V1
-LED8	|	T6
-
-
-
-//Select Next
+//16. Select Next
 specify the following:
 
 Device Family: Virtex2P
@@ -93,7 +73,7 @@ Speed Grade: -7
 Top_level Module Type: EDIF
 Simulator: Other VHDL
 
-//Project finished in xilinx
+//17. Project finished in xilinx
 Click on File, the .edf File
 Double click on Inplement Design below;
 Right Click on Generate Design -> Properties -> Clock JTAG CLK;  //IMPORTANT!!!
@@ -101,20 +81,20 @@ Then Generate the Programming File & Close
 
 
 //Now loading the bit file 
-//Run impact
+/*
+* To Start Impact
+*/
+//18. Run impact
 impact&
-//Create a new project
+//19. Create a new project
 Select Prepare a System ACE File
+Operating Mode - Novice
 
 Specify Collection name and location //Location is where the xilinx file was 
 
 Select Configuration Address 0 only
 
-Finish then  Add the .bit file;
-
-
-
+Then  Add the .bit file;
+Generate File...
+//20. Look for the [rev0.ace] file then put it on the sd card.
 //To be continued to run the file on the FPGA ...
-
-
-TO negate an output, use it as a signal

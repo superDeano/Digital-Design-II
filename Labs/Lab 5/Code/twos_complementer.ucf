@@ -1,0 +1,32 @@
+# Precision RTL Synthesis  64-bit 2016.1.0.15 (Production Release) Wed Jun  8 09:35:56 PDT 2016
+
+CONFIG STEPPING="0";
+
+NET clk LOC = T4;
+
+NET din(0) LOC = N3;
+NET din(1) LOC = P7;
+NET din(2) LOC = P1;
+NET din(3) LOC = M3;
+NET din(4) LOC = R9;
+NET din(5) LOC = N2;
+NET din(6) LOC = L4;
+NET din(7) LOC = N5;
+
+# Reset using the Enter Button on the board
+NET reset LOC = AG5;
+
+NET reg_out(0) = T6;
+NET reg_out(1) = V1;
+NET reg_out(2) = R3;
+NET reg_out(3) = R5;
+NET reg_out(4) = T2;
+NET reg_out(5) = P4;
+NET reg_out(6) = R7;
+NET reg_out(7) = P2;
+
+NET counter_out(0) = AA5;
+NET counter_out(1) = AA6;
+NET counter_out(2) = AC3;
+NET counter_out(3) = AC4;
+

@@ -1,0 +1,107 @@
+# Info: [9566]: Logging session transcript to file /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/precision.log
+//  Precision RTL Synthesis  64-bit 2016.1.0.15 (Production Release) Wed Jun  8 09:35:56 PDT 2016
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2016, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Linux d_chongs@horvitz.encs.concordia.ca #1 SMP Tue Mar 12 16:11:28 CDT 2019 3.10.0-957.10.1.el7.x86_64 x86_64
+//  
+//  Start time Wed Mar 27 15:01:09 2019
+# -------------------------------------------------
+# Info: [9566]: Logging session transcript to file /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/precision.log
+# COMMAND: new_project -name lab5 -folder /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV -createimpl_name lab5_impl_1
+# Info: [9574]: Input directory: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV
+# Info: [9569]: Moving session transcript to file /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/precision.log
+# Info: [9555]: Created project /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5.psp in folder /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV.
+# Info: [9531]: Created directory: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1.
+# Info: [9554]: Created implementation lab5_impl_1 in project /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5.psp.
+# Info: [9575]: The Results Directory has been set to: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1/
+# Info: [9566]: Logging project transcript to file /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1/precision.log
+# Info: [9566]: Logging suppressed messages transcript to file /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1/precision.log.suppressed
+# Info: [9550]: Activated implementation lab5_impl_1 in project /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5.psp.
+new_project -name lab5 -folder /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV -createimpl_name lab5_impl_1
+# COMMAND: add_input_file {../Code/lab5test.vhd}
+add_input_file {../Code/lab5test.vhd}
+# COMMAND: setup_design -manufacturer Xilinx -family "VIRTEX-II Pro" -part 2VP30ff896 -speed -7
+# Info: [15298]: Setting up the design to use synthesis library "xcv2p.syn"
+# Info: [575]: The global max fanout is currently set to 10000 for Xilinx - VIRTEX-II Pro.
+# Info: [15324]: Setting Part to: "2VP30ff896".
+# Info: [15325]: Setting Process to: "7".
+# Info: [7512]: The place and route tool for current technology is ISE.
+setup_design -manufacturer Xilinx -family "VIRTEX-II Pro" -part 2VP30ff896 -speed -7
+# COMMAND: setup_design -frequency 100 -max_fanout=10000
+# Info: [575]: The global max fanout is currently set to 10000 for Xilinx - VIRTEX-II Pro.
+setup_design -frequency 100 -max_fanout=10000
+# COMMAND: compile
+# Info: [3022]: Reading file: /CMC/tools/mentor/precision/Mgc_home/pkgs/psr/techlibs/xcv2p.syn.
+# Info: [634]: Loading library initialization file /CMC/tools/mentor/precision/Mgc_home/pkgs/psr/userware/xilinx_rename.tcl
+# Info: XILINX
+# Info: [40000]: vhdlorder, Release 2016a.7
+# Info: [40000]: Files sorted successfully.
+# Info: [40000]: hdl-analyze, Release RTLC-Precision 2016a.7
+# Info: [42502]: Analyzing input file "/nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/../Code/lab5test.vhd" ...
+# Info: [659]: Top module of the design is set to: twos_complementer.
+# Info: [657]: Current working directory: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1.
+# Info: [40000]: RTLC-Driver, Release RTLC-Precision 2016a.7
+# Info: [40000]: Last compiled on Jun  2 2016 06:11:46
+# Info: [44512]: Initializing...
+# Info: [44504]: Partitioning design ....
+# Info: [40000]: RTLCompiler, Release RTLC-Precision 2016a.7
+# Info: [40000]: Last compiled on Jun  2 2016 06:47:43
+# Info: [44512]: Initializing...
+# Info: [44522]: Root Module work.twos_complementer(twos_comp_arch): Pre-processing...
+# Info: [45143]: "/nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/../Code/lab5test.vhd", line 22: Enumerated type states_type with 10 elements encoded as onehot.
+# Info: [45144]: Encodings for states_type values.
+# Info: [40000]: value                              	                   states_type[9-0]
+# Info: [40000]: load_state                         	                    0000000001
+# Info: [40000]: test_bit_state                     	                    0000000010
+# Info: [40000]: first_one_state                    	                    0000000100
+# Info: [40000]: still_zero_state                   	                    0000001000
+# Info: [40000]: test_count_zero_state              	                    0000010000
+# Info: [40000]: test_count_one_state               	                    0000100000
+# Info: [40000]: next_state                         	                    0001000000
+# Info: [40000]: flip_zero_state                    	                    0010000000
+# Info: [40000]: flip_one_state                     	                    0100000000
+# Info: [40000]: done_state                         	                    1000000000
+# Info: [45144]: Extracted FSM in module work.twos_complementer(twos_comp_arch), with state variable = state[9:0], async set/reset state(s) = 0000000001 , number of states = 10.
+# Info: [45144]: Re-encoding 10 state FSM as "onehot".
+# Info: [45144]: FSM: State encoding table.
+# Info: [40000]: FSM:	Index	                State Name	                            Literal	                      Encoding
+# Info: [40000]: FSM:	    0	                load_state	                         0000000001	                    0000000001
+# Info: [40000]: FSM:	    1	            test_bit_state	                         0000000010	                    0000000010
+# Info: [40000]: FSM:	    2	           first_one_state	                         0000000100	                    0000000100
+# Info: [40000]: FSM:	    3	          still_zero_state	                         0000001000	                    0000001000
+# Info: [40000]: FSM:	    4	      test_count_one_state	                         0000100000	                    0000010000
+# Info: [40000]: FSM:	    5	     test_count_zero_state	                         0000010000	                    0000100000
+# Info: [40000]: FSM:	    6	                next_state	                         0001000000	                    0001000000
+# Info: [40000]: FSM:	    7	            flip_one_state	                         0100000000	                    0010000000
+# Info: [40000]: FSM:	    8	           flip_zero_state	                         0010000000	                    0100000000
+# Info: [40000]: FSM:	    9	                done_state	                         1000000000	                    1000000000
+# Info: [44523]: Root Module work.twos_complementer(twos_comp_arch): Compiling...
+# Info: [44838]: "/nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/../Code/lab5test.vhd", line 189: Macro Modgen_Counter "counter_up_sclear_clock_cnt_en_0_4" inferred for node "counter".
+# Info: [44842]: Compilation successfully completed.
+# Info: [44841]: Counter Inferencing === Detected : 1, Inferred (Modgen/Selcounter/AddSub) : 1 (1 / 0 / 0), AcrossDH (Merged/Not-Merged) : (0 / 0), Not-Inferred (Acrossdh/Attempted) : (0 / 0), Local Vars : 0 ===
+# Info: [44856]: Total lines of RTL compiled: 203.
+# Info: [44835]: Total CPU time for compilation: 0.0 secs.
+# Info: [44513]: Overall running time for compilation: 6.0 secs.
+# Info: [657]: Current working directory: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1.
+# Info: [15330]: Doing rtl optimizations.
+# Info: [660]: Finished compiling design.
+compile
+# COMMAND: synthesize
+# Info: [657]: Current working directory: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1.
+# Info: [20013]: Precision will use 2 processor(s).
+# Info: [15002]: Optimizing design view:.work.twos_complementer.twos_comp_arch
+# Info: [8048]: Added global buffer BUFGP for Port port:clk
+# Info: [3027]: Writing file: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1/twos_complementer.edf.
+# Info: [3027]: Writing file: /nfs/home/d/d_chongs/Documents/Modelsim/FPGA_ADV/lab5_impl_1/twos_complementer.ucf.
+# Info: [12045]: Starting timing reports generation...
+# Info: [12046]: Timing reports generation done.
+# Info: [12048]: POST-SYNTHESIS TIMING REPORTS ARE ESTIMATES AND SHOULD NOT BE RELIED ON TO MAKE QoR DECISIONS. For accurate timing information, please run place-and-route (P&R) and review P&R generated timing reports.
+# Info: [660]: Finished synthesizing design.
+# Info: [11019]: Total CPU time for synthesis: 0.4 s secs.
+# Info: [11020]: Overall running time for synthesis: 2.4 s secs.
+synthesize
